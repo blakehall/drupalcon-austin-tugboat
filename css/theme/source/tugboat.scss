@@ -1,0 +1,65 @@
+/**
+ * Sky theme for reveal.js.
+ *
+ * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+$orange: #ed6023;
+$dark_orange: #8e2e0c;
+$water_blue: #ace9eb;
+$dark_blue: #405655;
+
+// Include theme-specific fonts
+@import url(https://fonts.googleapis.com/css?family=Nunito:400,700,400italic,700italic);
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: 'Nunito', sans-serif;
+$mainColor: $dark_orange;
+$headingFont: 'Nunito', sans-serif;
+$headingColor: white;
+$headingLetterSpacing: -0.08em;
+$headingTextShadow: none;
+$backgroundColor: $orange;
+$linkColor: $dark_blue;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: $orange;
+
+// Fix links so they are not cut off
+.reveal a:not(.image) {
+	line-height: 1.3em;
+}
+
+
+// Background generator
+@mixin bodyBackground() {
+	background: url(../images/sun.png) $orange no-repeat bottom;
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+// Tugboat mixins
+@mixin water-background() {
+	background-color: $water-blue;
+	background: url(../images/fish2.png) $water_blue repeat-x center bottom; // if needed change this with darken()
+}
+
+html.water .state-background {
+	@include water-background();
+}
+
+
+html.water {
+	section {
+		p {
+			color: $dark_blue;
+		}
+	}
+}
