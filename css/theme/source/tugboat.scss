@@ -51,6 +51,28 @@ $selectionBackgroundColor: $orange;
 	background: url(../images/fish2.png) $water_blue repeat-x center bottom; // if needed change this with darken()
 }
 
+
+.reveal section img {
+	background: inherit;
+	border: none;
+	box-shadow: none;
+}
+
+.reveal {
+	.servers {
+		text-align: center;
+
+		ul {
+			list-style: none;
+
+			li {
+				text-align: center;
+			}
+		}
+	}
+}
+
+// Water state themeing.
 html.water .state-background {
 	@include water-background();
 }
