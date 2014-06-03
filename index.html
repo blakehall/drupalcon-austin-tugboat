@@ -51,20 +51,29 @@
 
 				<section data-state="water">
 					<p><img src="images/lullalogo.png" alt="lullabot-logo" /></p>
+
 					<aside class="notes">
-						Howdy folks, my name is Blake Hall. I'm a Senior Developer at Lullabot. We provide consulting, strategy, design and development work while trying to simultaneously kick ass and have fun (and sometime juggle). This is my colleague, Senior Architect and Development Manager James Sansbury. We're here to spend the next hour or so talking about a little tool we've built that we affectionately call Tugboat (because all of our projects have to have a logo that looks good on a tshirt). Tugboat is a build tool, of sorts, but unlike most other build tools we've seen it's primary job is to provide increased transparency and visibility into the development process for less technical stakeholders (including project managers) while staying out of the developers way.
+						Howdy folks, my name is Blake Hall. I'm a Senior Developer at Lullabot. We provide consulting, strategy, design and development work while trying to simultaneously kick ass and have fun (and sometime juggle). This is my colleague, Senior Architect and Development Manager James Sansbury.
 					</aside>
 				</section>
 
 				<section>
 					<section>
-						<p><img src="images/travis.png" alt="travis-ci-logo" /></p>
-						<p><img src="images/jenkins.png" alt="jenkins-logo" /></p>
+						<img src="images/jenkins.png" alt="jenkins-logo"  />
+						<img src="images/travis.png" alt="travis-ci-logo" style="padding-left: 4em;" />
+						<p><img src="css/images/logo.png" alt="tugboat-logo" /></p>
+
+						<aside class="notes">
+							We're here to spend the next hour or so talking about a little tool we've built that we affectionately call Tugboat (because all of our projects have to have a logo that looks good on a tshirt). Tugboat is a build tool, of sorts, but unlike most other build tools we've seen it's primary job is to provide increased transparency and visibility into the development process for less technical stakeholders (including project managers) while staying out of the developers way.
+						</aside>
 					</section>
 
 					<section data-state="water">
 						<h1 class="fragment">This is not a UI</h1>
 						<p><img src="images/build_passing.png" alt="build-passing" width="385px" height="95px" /></p>
+						<aside class="notes">
+							I understand I'm oversimplifying here, but traditional continuous integration and deployment tools aren't exactly transparent for non-technical folks. With Tugboat we're trying to give them more insight into the process.
+						</aside>
 					</section>
 				</section>
 
@@ -72,20 +81,36 @@
 					<p><img src="images/tizen.png" alt="tizen-logo" /></p>
 					<p><img src="images/msnbc.png" alt="msnbc-logo" /></p>
 					<p><img src="images/lullabot_horizontal.png" alt="lullabot-logo" width="28%" height="28%" /></p>
+
+					<aside class="notes">
+						Since this isn't exactly a typical build, continuous integration or continuous deployment tool (at least one we've come across for Drupal), we're going to start by spending a bit of time talking about the problem we (James) identified, or "why" we did this. Then we'll share some of the technical details of how we've used Tugboat to streamline our process and be more efficient on projects for Intel, MSNBC and our own lullabot.com site.
+					</aside>
 				</section>
 
 				<section data-state="water">
 					<h2>Enter Tugboat</h2>
 					<img src="css/images/sailor.png" alt="tugboat-logo" />
+
+					<aside class="notes">
+						Then we'll close with some thoughts about the impact this has had on our project and development processes and where we see Tugboat going in the near future. In case you need them, Dramamine and sea-sick bags have been placed under your chairs.
+					</aside>
 				</section>
 
 				<section>
 					<section>
 						<h1>First</h1>
 						<p>a little bit of history</p>
+
+						<aside class="notes">
+							Before we dive into the Why and How behind Tugboat, let's briefly reminisce about where we've come from with Drupal development workflow and best practices.
+						</aside>
 					</section>
 
 					<section data-background="images/velociraptor.jpg">
+						<aside class="notes">
+							At some point, probably in the paleolithic era in technology industry terms, we figured out that it's a good idea to maintain separate environments for development and production. Most Drupal projects I've worked on, even those pre-dating my time at Lullabot, have used a workflow similar to this
+						</aside>
+
 					</section>
 
 					<section data-state="water" class="servers">
@@ -94,14 +119,30 @@
 							<li>Staging  <br /><img src="images/servers.png" alt="servers" /></li>
 							<li>Development  <br /><img src="images/servers.png" alt="servers" /></li>
 						</ul>
+
+						<aside class="notes">
+							Over time, we've evolved several methods to actually manage promoting configuration changes (via code) up from the bottom on this chart. We treat the user generated content that makes up the bulk of our sites as data, and that typically moves in the opposite direction from top to bottom.
+
+This has worked out with varying degrees of success for years, and left us arguing in the margins about how to handle things that walk the line between content/configuration and how they should be handled. (hello menus and menu items!) This also doesn't address the hairy problem of content deployment (and we'll happily leave that discussion to the core conversations for our purposes today).
+
+What we are going to focus on, is how we can reduce the pain associated with the peer review and QA process and talk about how we can use tools like Tugboat to actually reduce the amount of time it takes to get functionality and bug fixes deployed to production.
+						</aside>
 					</section>
 
 					<section>
 						<h2>hook_update_N()</h2>
+
+						<aside class="notes">
+							Before I worked at Lullabot I can remember listening to their podcasts (2007) about every new lullabot.com launch. At least as far as I can remember, eight years is a long time, these podcasts were my first exposure to hook_update_N(). Three years later, when lullabot.com was redesigned yet again (a redesign which coincidently James here was a key part of), they talked about the same problems everyone seemed to face when it came to deploying drupal sites: editing configuration on the production server (**cough Jeff Robbins cough**) without capturing those changes in code or an update hook led to possibly unintended inconsistencies between the Development, Staging and Production. (and certainly, at the very least, complicates diffs between environments).
+						</aside>
 					</section>
 
 					<section>
 						<h1>Features<h1>
+
+						<aside class="notes">
+							Similarly, I can remember sitting in a room at DrupalCon DC listening to developers from Development Seed talk about the initial betas of the strongarm and features modules and thinking to myself "this is going to change the way we develop and deploy Drupal sites". By this point I think it's safe to say that most of us in this room have leveraged, or rather abused, Features as a deployment solution, that is to say a tool to help us capture configuration in code, rather than for it's initially intended purpose: a way for agencies to bundle and reuse functionality across completely unrelated sites.
+						</aside>
 					</section>
 
 					<section data-state="water">
@@ -110,11 +151,19 @@
 						<h2>Management</h2>
 						<h2>Initiative</h2>
 					</section>
+
+					<aside class="notes">
+						Drupal 8 brings the promise of more sophisticated configuration management than we've had to date. Rather than our mis-use of Features module, developers will now be able to leverage a core api to provide import / export / sync functionality for their configuration storage. While this is unquestionably **a "good thing"** CMI won't, by itself, be able to solve all the problems associated with shepherding a ticket through it's lifecycle.
+					</aside>
 				</section>
 
 
 				<section>
 					<img src="css/images/logo.png" alt="tugboat-logo" />
+
+					<aside class="notes">
+						All of this work makes our work as developers easier, and makes us more efficient, but we still need to improve our process, to increase  the visibility non technical folks have into work as it's in progress. Tugboat has proven incredibly useful to help us answer the question "what would this code look like, deployed right now".
+					</aside>
 				</section>
 
 
@@ -131,12 +180,10 @@
 						<h1>Release blockers</h1>
 					</section>
 
-					<section>
-						<h1>Sinking ship</h1>
+					<section data-background="images/sinking-ship.jpg">
 					</section>
 
-					<section data-state="water">
-						<h1>Fish eating fish</h1>
+					<section data-background="images/fish-eating-fish.jpg">
 					</section>
 
 				</section>
@@ -147,27 +194,57 @@
 
 				<section>
 					<img src="images/tugboat_comments.png" alt="tugboat github comments" />
+					<p>(this isn't really a UI either)</p>
 				</section>
 
 				<section data-state="water">
 					<img src="images/lullabot.com.png" alt="lullabot.com" />
+
+					<aside class="notes">
+						Thanks James.
+
+After all of James' work, putting the initial version of Tugboat together for the Tizen project, we shamelessly _stole_, er I mean **leveraged** it for use on lullabot.com. Like the typical cobbler's children the process of building the latest lullabot.com, to be polite, _took a while_. For quite a while the project trudged forward with whichever developer resources had spare time. This often led to jointly working on, or finishing each other's features, and lots of time sunk into updating / re-syncing a local development environment in order to do some peer review, or test simple bug fixes. Soliciting feedback, or getting peer reviews was a difficult process, because of the scattered nature of development on the project.
+
+Using tugboat allowed us to have shared, canonical, urls for in progress features. I know, I at least, used this a couple of times to push code changes to a development branch without actually having my local in sync, or up to date. I could simply hand edit a view configuration, push my commits and see / share the work incredibly quickly. This made it easier for us to solicit peer review, since the reviewer only needed the tugboat environment link in a github ticket rather than a full-blown local development environment. It also made it easier to solicit feedback and iterate on new features. Several times we would use the tugboat environment to share and discuss possible UI implementations throughout the project.
+					</aside>
 				</section>
 
 
 				<section data-state="water">
 					<img src="images/tizen.org.png" alt="tizen.org" />
+
+					<aside class="notes">
+						Then last spring, after our successful launch of lullabot.com, I started working on another project at Intel. Our client, Mike, wanted to have another instance of Tugboat set up for use with that project too. One of the challenges with the Tugboat, as it existed at that time, was in the actual setup process. While it was still worth doing, there was a day or two of getting everything installed and configured just right before we'd have a working service. There were several interdependent jobs to handle the production data downsync, keeping the staging sites up to date, and building the actual Tugboat environments. The code we had created was quite DRY, in the sense of don't repeat yourself, but that complicated the initial setup. Jenkins plugin dependency management, and discrepancies between plugin versions didn't help matters any either. In addition, because our Jenkins server was behind a VPN kicking off manual jobs required a bit of extra work (we all have at least a little bit of hate for VPN clients, right?).
+					</aside>
 				</section>
 
 				<section>
 					<img src="css/images/logo.png" alt="tugboat-logo" />
 					<img src="images/sailor.png" alt="salty-sailor" height="225px" />
+
+					<aside class="notes">
+						I created a command line wrapper for our tugboat scripts and the Jenkins API interface. Now, once a Jenkins instance is setup and the github plugin is configured (in other words Jenkins can access the github repository of interest) a couple of simple commands setup the skeleton jobs needed to generate automated pull request builds.
+
+This wrapper code also allows us to backup, diff and update the Jenkins job configurations in much the same way we do with Feature modules now using drush. This ensures that we can keep our Tugboat settings in version control as well.
+
+We also don't have to rely on github (and cron) to kick off job builds. Tugboat can build environments for any arbitrary branch, commit hash or ticket number manually from the command line (interface coming soon-ish?).
+
+There's also, now, a basic plugin system, so the same Tugboat utility wrapper that's being used to spin up dev environments can be used for backing up existing sites, as a test runner, deployment helper, etc.
+					</aside>
 				</section>
 
 				<section>
 					<section>
 						<h1>resemble.js</h1>
+
+						<aside class="notes">
+							In addition to helping spin up environments for pull requests, and running our Behat tests, we're in the process of wrapping up development on another feature for Tizen's Tugboat instance -- visual regression testing. Using the resemble.js library we're able to spin up a phantom.js headless browser and capture screenshots -- at key urls and key breakpoints as part of the Tuboat environment build process. These image files are then run through resemble.js which does a pixel by pixel comparison, highlighting any differences. These images can be posted back to the relevant github ticket -- allowing us to quickly scan for any untended visual side effects of a particular code change.
+						</aside>
 					</section>
 					<section data-background="images/developer.png">
+						<aside class="notes">
+							Here are a couple of example images between the production version of developer.tizen.org and my localhost. You can see from the pink highlighting that quite a bit has changed. On closer examination though the changes fall into 3 categories: actual content difference (shame on me I need to downsync from production more often), missing images (I also apparently need to rsync files, or use stage_file_proxy), and improperly configured typekit fonts on my localhost. While in this case the diff is somewhat of a false positive, there are enough changes called out here to highlight the types of bugs.
+						</aside>
 					</section>
 					<section data-background="images/developer_pr.png">
 					</section>
@@ -183,6 +260,10 @@
 				<section>
 					<section>
 						<h2>Setting this up for yourself</h2>
+
+						<aside class="notes">
+							While we haven't (yet?) released all of the wrapper code I mentioned earlier, Jerad Bitner has written an article on lullabot.com about our github pull request builder which was the precursor to Tugboat. This article points to the majority of the resources we used piecing together the initial version of Tugboat, including the scripts responsible for building environments and the Jenkins Github Pull Request Builder plugin itself.
+						</aside>
 					</section>
 					<section>
 						<p><a href="https://www.lullabot.com/blog/article/github-pull-request-builder-drupal">Pull Request Builder blog post</a></p>
@@ -203,16 +284,24 @@
 				</section>
 
 				<section data-state="water">
-					<h2 class="fragment">Still not a UI</h2>
 					<img src="images/tugboat_comments.png" alt="tugboat github comments" />
 				</section>
 
 				<section data-background="images/jenkins_ui.png">
+					<aside class="notes">
+						In practice we've found jenkins to be kind of clunky for our needs. Things like production backups and staging downsync / updates need to happen on a very reliable schedule. Crontab is often better for managing tasks like this than Jenkins -- which in our experience occasionally crashes in an un-obvious way (at least when compared to crontab). Really we're using Jenkins to poll for github pull requests, and to provide an interface for manually building environments that doesn't require the command line.
+					</aside>
 				</section>
 
 				<section data-state="water">
 					<h1>Welcome To</h1>
 					<h1>The Future</h1>
+
+					<aside class="notes">
+						Rather than continue to rely on this UI, we're working on our own. In the plans so far we have a per project dashboard, that will provide at a glance all of the Tugboat environments across a particular project. This will give nontechnical stakeholders a bird's eye view to the work in progress code at any given moment in time. In addition, each tugboat build environment will also have their own landing page. This will be a handy place for us to aggregate information about the environment. When was it built? Does it have the most recent code from the relevant branch? Should we manually trigger a rebuild because some potentially conflicting code has changed elsewhere? What do the test results look like? How about performance profiling (both cachegrind and the ???? front end equivalent ???? waterfall). _https://github.com/gmetais/grunt-devperf/_
+
+Can, or should, we use vagrant along side puppet or chef to provision environments and perhaps, in the process, convince developers to use the same stack locally to more closely match the target stack? Perhaps we will use containers, with something like docker, to make each tugboat project a bit more resource efficient while cleanly silo'ing each tugboat build environment.
+					</aside>
 				</section>
 
 
