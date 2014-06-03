@@ -270,14 +270,20 @@ What we are going to focus on, is how we can reduce the pain associated with the
           <section>
             <h2>"It worked fine on my local!"</h2>
             <aside class="notes">
-              Anyone heard these words? I'm starting to feel lied to. All of the
-              ways we use to get around the pain of QAing our Drupal sites make
-              that QA process less accurate. Because it has become a multi-step,
-              long process to fully deploy a Drupal site, we take short cuts, like
-              not re-importing the production database, using handy modules like
-              Stage File Proxy so we don't have to download the full files
-              directory for a site, not fully reverting all features, etc.
-              All of these shortcuts are what cause inconsistent behavior.
+              <ul>
+                <li>Anyone heard these words?</li>
+                <li>All of the ways we use to get around the pain of QAing our
+                  Drupal sites make that QA process less accurate</li>
+                <li>Because it has become a multi-step, long process to fully
+                  deploy a Drupal site, we take short cuts
+                  <ul>
+                    <li>Skipping db re-import</li>
+                    <li>Stage File Proxy</li>
+                    <li>Not  fully reverting features</li>
+                  </ul>
+                </li>
+                <li>All of these shortcuts are what cause inconsistent behavior across environments.</li>
+              </ul>
             </aside>
           </section>
 
