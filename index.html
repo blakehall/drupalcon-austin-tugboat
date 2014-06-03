@@ -197,6 +197,7 @@ What we are going to focus on, is how we can reduce the pain associated with the
                     <li>you misunderstood…</li>
                   </ol>
                 </li>
+                <li>Expensive. Really expensive for large teams</li>
               </ul>
             </aside>
 					</section>
@@ -205,8 +206,8 @@ What we are going to focus on, is how we can reduce the pain associated with the
 						<h1>Release blockers</h1>
             <aside class="notes">
               <ul>
-                <li>Back in the paleolithic era of Drupal deployment, it was pretty easy to show a project owner or stakeholder whatever thing you were working on.</li>
-                <li>But Drupal is much more complex now, and we are working with larger teams, that might be working on many projects at once</li>
+                <li>Back in the paleolithic era of Drupal deployment, it was pretty easy to show a project owner or stakeholder whatever thing you were working on…</li>
+                <li>But Drupal is much more complex now, and we are working with larger teams, that might be working on many projects at once…</li>
                 <li>Traditionally, the way around this has been to create larger releases that can be tested all together in specific QA environments.</li>
               </ul>
             </aside>
@@ -248,10 +249,72 @@ What we are going to focus on, is how we can reduce the pain associated with the
             </aside>
           </section>
 
+          <section>
+            <h2>"It worked fine on my local!"</h2>
+            <aside class="notes">
+              Anyone heard these words? I'm starting to feel lied to. All of the
+              ways we use to get around the pain of QAing our Drupal sites make
+              that QA process less accurate. Because it has become a multi-step,
+              long process to fully deploy a Drupal site, we take short cuts, like
+              not re-importing the production database, using handy modules like
+              Stage File Proxy so we don't have to download the full files
+              directory for a site, not fully reverting all features, etc.
+              All of these shortcuts are what cause inconsistent behavior.
+            </aside>
+          </section>
+
 				</section>
+
+        <section>
+          <h1>I get it…</h1>
+          <h2>Now what?</h2>
+          <aside class="notes">
+            That's it, I hope you enjoyed our presentation!
+          </aside>
+        </section>
+        <section>
+          <h2>What if…</h2>
+          <ul class="fragment">
+            <li>Immediate visibility</li>
+            <li class="fragment">Avoid regressions</li>
+            <li class="fragment">Die, buggies</li>
+            <li class="fragment">Analyze before code gets merged</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>
+                What if…
+                <ul>
+                  <li>show stakeholders what we are working on right away</li>
+                  <li>catch regressions before they happened</li>
+                  <li>squash bugs before they ever made it to QA</li>
+                  <li>detect performance, visual and functional regressions before…</li>
+                </ul>
+              </li>
+            </ul>
+            What if we could show our stakeholders what we were working on right
+            away at just the click of the button. What if we could find
+            regressions before they ever happened? Before they were ever
+            committed to the repository? What if we could squash bugs before
+            they ever even made it into your code? What if we could detect
+            performance, visual, and functional regressions immediately?
+          </aside>
+        </section>
 
 				<section data-state="water">
 					<img src="images/tizen.org.png" alt="tizen.org" />
+          <aside class="notes">
+            This is what we built Tugboat to do. About three years ago, we
+            started work on the Tizen project for Intel, the Linux foundation,
+            and Samsung. Tizen is a Drupal 7 multisite setup comprised of three
+            different websites, tizen.org, developer.tizen.org, and
+            source.tizen.org. We had a super technically savvy stakeholder and
+            project owner named Mike Shaver who totally could have taken the
+            time to build each branch of our code that he needed to test, to
+            make sure you did what we said it was going to do. But Mike is a
+            busy guy, and he doesn't need to be importing three databases five
+            times a day in order to test everything that we were doing.
+          </aside>
 				</section>
 
 				<section data-state="water">
