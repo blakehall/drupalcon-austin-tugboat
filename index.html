@@ -190,24 +190,62 @@ What we are going to focus on, is how we can reduce the pain associated with the
 						<h1>Visibility Suffers</h1>
             <aside class="notes">
               <ul>
-                <li>All of this great progress Blake has described...</li>
-                <li>Let's talk about the cost...</li>
+                <li>We at Lullabot often work in one or two week sprints with a demo at the end.</li>
+                <li>Anyone here had a demo go wrong where the project owner, or stakeholder, or designer says
+                  <ol>
+                    <li>now that I see it, it should…</li>
+                    <li>you misunderstood…</li>
+                  </ol>
+                </li>
               </ul>
             </aside>
 					</section>
 
 					<section>
 						<h1>Release blockers</h1>
+            <aside class="notes">
+              <ul>
+                <li>Back in the paleolithic era of Drupal deployment, it was pretty easy to show a project owner or stakeholder whatever thing you were working on.</li>
+                <li>But Drupal is much more complex now, and we are working with larger teams, that might be working on many projects at once</li>
+                <li>Traditionally, the way around this has been to create larger releases that can be tested all together in specific QA environments.</li>
+              </ul>
+            </aside>
 					</section>
 
 					<section data-background="images/sinking-ship.jpg">
+            <aside class="notes">
+              <ul>
+                <li>Who here has at this moment had a release fail to pass QA, but one piece of that release needs to go out right away?</li>
+                <li>Whole release is blocked</li>
+              </ul>
+            </aside>
 					</section>
 
 					<section data-background="images/fish-eating-fish.jpg">
+            <aside class="notes">
+              <ul>
+                <li>All of this leads to another interesting phenomenon</li>
+                <li>Releases start to back into each other, and grow in size</li>
+                <li>We often start making compromises on the process in order to payoff the debt that the process incurs</li>
+              </ul>
+            </aside>
 					</section>
 
           <section>
             <h1>Trade-offs</h1>
+            <ul class="fragment">
+              <li>Visibility for Testability</li>
+              <li class="fragment">Agility for Stability</li>
+            </ul>
+            <aside class="notes">
+              In other words, by creating a consistent and testable deployment
+              process, we've slowed things down to where it takes much longer
+              for our stakeholders to see what we're building. And if we slow
+              how long it takes for our stakeholders to see what the developers
+              are doing, *everything* suffers. We've created a bunch of amazing
+              ways we can QA our Drupal sites, but those things all make our
+              process slower and our project murkier.
+            </aside>
           </section>
 
 				</section>
