@@ -317,6 +317,22 @@ What we are going to focus on, is how we can reduce the pain associated with the
           </aside>
 				</section>
 
+        <section data-state="water">
+          <h2>blake to add mergey thing.</h2>
+          <aside class="notes">
+            In order to save time, we wrote a set of basic bash scripts coupled
+            with some Jenkins jobs and he github integration plug-in to create that
+            glue that we needed. Anytime anyone created a new pull request,
+            Jenkins would be triggered by the plug-in, our bash trips would run,
+            and a clone of the three Drupal sites with the new code merged into
+            master Live on the site and deployed. These bash scripts would place
+            a comment on the github pull request with links to these three sites
+            so that Mike could go there and see the work that is being proposed
+            as added, check to make sure it did what it was supposed to do, and
+            that it didn't break anything else.
+          </aside>
+        </section>
+
 				<section data-state="water">
 					<p><img src="images/msnbc.png" alt="msnbc-logo" /></p>
 				</section>
